@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Cinema_atrifact:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Cinema_atrifact</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Cinema01-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Cinema_atrifact:war exploded" />
+    </root>
+  </artifact>
+</component>
