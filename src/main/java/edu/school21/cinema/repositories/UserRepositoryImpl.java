@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository{
-    private JdbcTemplate jdbcTemplate;
+    final private JdbcTemplate jdbcTemplate;
 
     public UserRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
