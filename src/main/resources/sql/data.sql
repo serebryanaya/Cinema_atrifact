@@ -1,7 +1,7 @@
 insert into users (email, password, firstname, lastname, phone) VALUES
     (
         '11@mail.ru',
-        '$2a$10$TZMg4w3G.6e3fPw5zDXRkemVZpEUtbreJvLhuUaDcj7wHyuExZIOS',
+        '$2b$10$Qrc6rGzIGaHpbgPM5kVXdeNZ9NiyRWC69Wk/17mttHKnDR2lW49KS',
         'Ivan',
         'Ivanov',
         '112'
@@ -9,7 +9,7 @@ insert into users (email, password, firstname, lastname, phone) VALUES
 insert into users (email, password, firstname, lastname, phone) VALUES
     (
         '22@mail.ru',
-        '$2a$10$EUphP3Vu4nRdZyfRd2wSZ.yFGAdvqYxmbVg3xYZISUfKnS9C3eiEC',
+        '$2a$10$AjHGc4x3Nez/p4ZpvFDWeO6FGxee/cVqj5KHHnHfuLnIOzC5ag4fm',
         'Peter',
         'Petrov',
         '113'

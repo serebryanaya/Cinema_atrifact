@@ -27,6 +27,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.3.10" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:6.0.5" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.24" />
+          <element id="library" level="project" name="Maven: com.zaxxer:HikariCP:5.0.1" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:2.0.0-alpha1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

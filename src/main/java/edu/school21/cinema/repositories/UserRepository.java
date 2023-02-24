@@ -4,13 +4,12 @@ import edu.school21.cinema.models.AuthHistory;
 import edu.school21.cinema.models.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository {
-    User getUserById(Long id);
-    User getUserByEmail(String email);
+    User findUserById(Long id);
+    User findUserByEmail(String email);
     void saveUser(User user);
     void updateUser(User user);
-    void addSignInInfo(User user, String host);
-    void addSignUpInfo(User user, String host);
-    List<AuthHistory> getAuthInfo(String login);
+    void deleteUserById(Long id);
 }
