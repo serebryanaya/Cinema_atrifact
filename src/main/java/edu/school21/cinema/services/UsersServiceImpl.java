@@ -13,20 +13,23 @@ import java.util.List;
 public class UsersServiceImpl implements UsersService{
 
     private UserRepository userRepository;
+    private static final String SIGN_IN="sign_in";
+    private static final String SIGN_UP="sign_up";
     private AuthRepository authRepository;
 //    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UsersServiceImpl(UserRepository userRepository) {
+    public UsersServiceImpl(UserRepository userRepository, AuthRepository authRepository) {
         this.userRepository = userRepository;
+        this.authRepository = authRepository;
     }
 
     @Override
     public boolean signIn(String email, String password, String address) {
-        if (!email.isEmpty() && !password.toString().isEmpty()) {
+        if (!email.isEmpty() && !password.isEmpty()) {
             User user = userRepository.findUserByEmail(email);
             if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-                authRepository.addSignInInfo(userRepository.findUserByEmail(email), address);
+                authRepository.addSignInfo(userRepository.findUserByEmail(email), address, SIGN_IN);
                 return true;
             }
         }
@@ -40,7 +43,7 @@ public class UsersServiceImpl implements UsersService{
             if (userRepository.findUserByEmail(email) == null) {
                 User user = new User(email, passwordEncoder.encode(password), "", "", "");
                 userRepository.saveUser(user);
-                authRepository.addSignUpInfo(userRepository.findUserByEmail(email), address);
+                authRepository.addSignInfo(userRepository.findUserByEmail(email), address, SIGN_UP);
                 return true;
             }
         }
@@ -53,8 +56,8 @@ public class UsersServiceImpl implements UsersService{
     }
 
     @Override
-    public void update(User user) {
-        userRepository.updateUser(user);
+    public boolean update(User user) {
+        return userRepository.updateUser(user);
     }
 
     @Override

@@ -9,7 +9,7 @@ public interface UsersService {
     boolean signIn(String email, String password, String address);
     boolean signUp(String email, String password, String address);
     User getUserByEmail(String email);
-    void update(User user);
+    boolean update(User user);
     List<AuthHistory> getAuthHistoryByEmail(String email);
 
 }

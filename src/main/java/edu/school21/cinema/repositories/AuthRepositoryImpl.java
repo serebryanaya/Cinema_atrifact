@@ -13,31 +13,21 @@ import java.util.List;
 
 public class AuthRepositoryImpl implements AuthRepository {
     private final JdbcTemplate jdbcTemplate;
+    private final String SQL_ADD_TRANSACTION = "INSERT INTO auth_history (user_id, transaction_type, host, transaction_time) values (?, ?, ?, ?)";
+    private final String SQL_FIND_USER_BY_ID = "SELECT * FROM auth_history WHERE user_id=?";
+
 
     public AuthRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
-    public void addSignInInfo(User user, String host) {
+    public void addSignInfo(User user, String host, String type) {
         jdbcTemplate.execute(
-                "INSERT INTO auth_history (user_id, transaction_type, host, transaction_time) values (?, ?, ?, ?)",
+                SQL_ADD_TRANSACTION,
                 (PreparedStatementCallback<Object>) ps -> {
                     ps.setLong(1, user.getId());
-                    ps.setString(2, "sign_in");
-                    ps.setString(3, host);
-                    ps.setString(4, new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date()));
-                    return ps.execute();
-                });
-    }
-
-    @Override
-    public void addSignUpInfo(User user, String host) {
-        jdbcTemplate.execute(
-                "INSERT INTO auth_history (user_id, transaction_type, host, transaction_time) values (?, ?, ?, ?)",
-                (PreparedStatementCallback<Object>) ps -> {
-                    ps.setLong(1, user.getId());
-                    ps.setString(2, "sign_up");
+                    ps.setString(2, type);
                     ps.setString(3, host);
                     ps.setString(4, new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date()));
                     return ps.execute();
@@ -47,10 +37,10 @@ public class AuthRepositoryImpl implements AuthRepository {
     @Override
     public List<AuthHistory> findAuthInfo(String email) {
         List<AuthHistory> history = jdbcTemplate.query(
-                        "SELECT * FROM auth_history WHERE user_id=?",
+                SQL_FIND_USER_BY_ID,
 //                        new Object[]{email},
 //                        new int[]{Types.VARCHAR},
-                        new BeanPropertyRowMapper<>(AuthHistory.class));
+                new AuthRowMapper());
         return history;
     }
 

@@ -16,14 +16,12 @@ public class IndexServlet extends HttpServlet {
         springContext = (ApplicationContext) config.getServletContext().getAttribute("springContext");
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/html/index.html");
         dispatcher.forward(request, response);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }

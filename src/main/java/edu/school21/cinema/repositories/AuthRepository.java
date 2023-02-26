@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AuthRepository {
-    void addSignInInfo(User user, String host);
-    void addSignUpInfo(User user, String host);
+    void addSignInfo(User user, String host, String type);
     List<AuthHistory> findAuthInfo(String login);
 }

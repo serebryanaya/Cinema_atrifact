@@ -1,5 +1,5 @@
 db.url=jdbc:postgresql://localhost:5432/fwa
 db.username=pveeta
 db.password=superpass
-db.driver-name=org.postgresql.Driver
+db.driver=org.postgresql.Driver
 upload-path=/Users/pveeta/Desktop/uploads/
